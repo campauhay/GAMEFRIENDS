@@ -158,6 +158,11 @@
     <script type="module">
       import { startBlackjackGame, hit, stand } from "./js/blackjack.js";
 
+      // Make functions accessible to inline HTML events
+      window.startBlackjackGame = startBlackjackGame;
+      window.hit = hit;
+      window.stand = stand;
+
       window.startGame = function (game) {
         const gameArea = document.getElementById("game-area");
         const gameTitle = document.getElementById("game-title");
