@@ -117,5 +117,56 @@
       homeSection.classList.remove('hidden');
     }
   </script>
+  <script type="module">
+  import { startBlackjackGame, hit, stand } from './js/blackjack.js';
+
+  window.startGame = function(game) {
+    const gameArea = document.getElementById('game-area');
+    const gameTitle = document.getElementById('game-title');
+    const gameContent = document.getElementById('game-content');
+    const homeSection = document.querySelector('main > section:first-child');
+
+    homeSection.classList.add('hidden');
+    gameArea.classList.remove('hidden');
+
+    if (game === 'poker') {
+      gameTitle.textContent = 'Poker';
+      gameContent.innerHTML = '<p>Placeholder for Poker game. Add your game logic here.</p>';
+    } else if (game === 'blackjack') {
+      gameTitle.textContent = 'Blackjack';
+      gameContent.innerHTML = `
+        <div id="blackjack-game" class="text-center">
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold">Your Hand:</h3>
+            <div id="player-hand" class="mb-2"></div>
+            <p id="player-score"></p>
+          </div>
+          <div class="mb-4">
+            <h3 class="text-lg font-semibold">Dealer's Hand:</h3>
+            <div id="dealer-hand" class="mb-2"></div>
+            <p id="dealer-score"></p>
+          </div>
+          <div class="mt-4">
+            <button onclick="hit()" class="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-700">Hit</button>
+            <button onclick="stand()" class="bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-700">Stand</button>
+            <button onclick="startBlackjackGame()" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-700 ml-2">Restart</button>
+          </div>
+          <p id="blackjack-result" class="mt-4 text-xl font-bold"></p>
+        </div>
+      `;
+      startBlackjackGame();
+    } else if (game === 'horse-racing') {
+      gameTitle.textContent = 'Horse Racing';
+      gameContent.innerHTML = '<p>Placeholder for Horse Racing game. Add your game logic here.</p>';
+    }
+  };
+
+  window.backToHome = function() {
+    const gameArea = document.getElementById('game-area');
+    const homeSection = document.querySelector('main > section:first-child');
+    gameArea.classList.add('hidden');
+    homeSection.classList.remove('hidden');
+  };
+</script>
 </body>
 </html>
